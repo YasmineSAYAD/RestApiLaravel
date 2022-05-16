@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,16 @@ Route::post('/register', [App\Http\Controllers\PassportAuthController::class, 'r
 
 Route::middleware('auth:api')->group(function () {
   Route::post('/logout', [App\Http\Controllers\PassportAuthController::class, 'logout'])->name('logout.api');
+
+  //users api
+  Route::resource("users",UserController::class,['only'=>['show','index','destroy']]);
 });
+
+
+
+
+
+
 
 
 
